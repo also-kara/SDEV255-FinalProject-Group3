@@ -23,3 +23,7 @@ footer {
     border-top-color: rgb(35, 35, 35);
     border-top-width: 3px;
 }
+
+.card {
+  margin-bottom: 120px;
+}
