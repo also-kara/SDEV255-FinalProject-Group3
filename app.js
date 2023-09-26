@@ -30,10 +30,6 @@ app.get('/login/signup', (req, res) => {
     res.render('signup');
 });
 
-app.get('/courses', (req, res) => {
-    res.render('course_list');
-});
-
 app.get('/courses/add', (req, res) => {
     res.render('course_new');
 });
