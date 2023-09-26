@@ -8,7 +8,12 @@ body {
     border-bottom-style: solid;
 };
 
-footer {margin: 100000px;}
+
+/*  I have no clue why it is doing this... 
+    But I need to say footer twice or else it doesn't work... 
+    The first one does nothing too. 
+    It's really weird.  */
+footer { display: none;}
 
 footer {
     background-color: rgb(0, 65, 33);
