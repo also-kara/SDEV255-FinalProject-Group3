@@ -37,3 +37,9 @@ app.get('/courses', (req, res) => {
 app.get('/courses/add', (req, res) => {
     res.render('course_new');
 });
+
+
+// 404 error handling
+app.use((req, res) => {
+    res.status(404).render('404')
+});
