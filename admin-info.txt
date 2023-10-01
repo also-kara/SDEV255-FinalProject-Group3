@@ -1,0 +1,8 @@
+Username: Developer
+Password: RyuGDt7lKk5EgKqH
+
+// raw
+mongodb+srv://<username>:<password>@nodetuts.6pkskvs.mongodb.net/
+
+// formated
+mongodb+srv://Developer:RyuGDt7lKk5EgKqH@nodetuts.6pkskvs.mongodb.net/
