@@ -1,8 +1,9 @@
 Username: Developer
 Password: RyuGDt7lKk5EgKqH
+Collection Name: SDEV266-FinalProject-DB
 
 // raw
 mongodb+srv://<username>:<password>@nodetuts.6pkskvs.mongodb.net/
 
 // formated
-mongodb+srv://Developer:RyuGDt7lKk5EgKqH@nodetuts.6pkskvs.mongodb.net/
+'mongodb+srv://Developer:RyuGDt7lKk5EgKqH@nodetuts.6pkskvs.mongodb.net/SDEV266-FinalProject-DB'

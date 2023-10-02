@@ -5,7 +5,7 @@ const CourseSchema = new Schema({
     instructor_id: {
         type: mongoose.Schema.Types.ObjectId, 
         ref: 'User',
-        required: true
+        default: null
     },
     course_name: {
         type: String,
@@ -14,6 +14,9 @@ const CourseSchema = new Schema({
     subject: {
         type: String,
         required: true
+    },
+    description: {
+        type: String
     },
     credit_hours: {
         type: Number,
@@ -28,6 +31,6 @@ const CourseSchema = new Schema({
 
 }, {timestamps: true});
 
-const Course = mongoose.model('Course', CourseSchema);
+const course = mongoose.model('Course', CourseSchema);
 
-module.exports = Course;
+module.exports = course;

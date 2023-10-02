@@ -7,20 +7,24 @@
             <div class="card" style="width: 100rem;">
 
                 <div class="card-body">
-                    <h5 class="card-title card-header">Add New Course</h5>
+                    <h5 class="card-title card-header">Edit Course</h5>
 
 <br/>
-<form action="/course/add" method="POST">
+<form action="/course/update" method="POST">
   
   <!-- Course name input -->
   <div class="form-outline mb-4">
-    <input type="text" id="coursename" class="form-control" name="course_name" />
+    <input type="text" 
+    id="coursename" class="form-control" 
+    name="course_name" value="<%= course.course_name %>" />
     <label class="form-label" for="coursename">Course Name</label>
   </div>
 
   <!-- Description input -->
   <div class="form-outline mb-4">
-    <textarea class="form-control" id="description" rows="4" name="description"></textarea>
+    <textarea class="form-control" 
+    id="description" rows="4" 
+    name="description"><%= course.description %></textarea>
     <label class="form-label" for="description">Course Description</label>
   </div>
   
@@ -29,24 +33,30 @@
   <div class="row mb-4">
     <div class="col">
       <div class="form-outline">
-        <input type="text" id="subject" class="form-control" name="subject" />
+        <input type="text" 
+        id="subject" class="form-control" 
+        name="subject" value="<%= course.subject %>" />
         <label class="form-label" for="subject">Subject Area</label>
       </div>
     </div>
   <!-- Number of Credits input -->
     <div class="col">
-      <input type="number" id="credits" class="form-control" name="credit_hours"  />
+      <input type="number" 
+      id="credits" class="form-control" 
+      name="credit_hours" value="<%= course.credit_hours %>" />
       <label class="form-label" for="credits">Number of Credits</label>
     </div>
   <!-- max_attendance -->
     <div class="col">
-      <input type="number" id="credits" class="form-control" name="max_attendance"  />
+      <input type="number" 
+      id="credits" class="form-control" 
+      name="max_attendance" value="<%= course.max_attendance %>" />
       <label class="form-label" for="credits">Max Attendance</label>
     </div>
   </div>
 
   <!-- Submit button -->
-  <button type="submit" class="btn btn-outline-success">Add Course</button>
+  <button type="submit" class="btn btn-outline-success">Update Course</button>
 </form>
                   
   </div>

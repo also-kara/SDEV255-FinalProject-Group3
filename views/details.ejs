@@ -1,0 +1,40 @@
+<%- include('./templates/header.ejs') %>
+
+
+<section class="container-md mt-5">
+    <div class="row align-items-center justify-content-center">
+        
+        <div class="card" style="width: 100rem;">
+
+            <div class="card-body">
+                <h2 class="card-title card-header"><%= course.course_name %></h2>
+
+                <h3>Subject: <%= course.subject %></h3>
+                <h3>Description: <%= course.description %></h3>
+                <h3>Cridit Hours: <%= course.credit_hours %></h3>
+                <h3>Instructor: <%= instructor %></h3>
+
+
+                <a class="delete" data-doc="<%= course._id %>">Delete</a>
+                <a class="update" href="/course/update/<%= course._id %>">Update</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    const deleteButton = document.querySelector('a.delete');
+    deleteButton.addEventListener('click', (e) => {
+        const endpoint = `/course/${deleteButton.dataset.doc}`;
+    
+        fetch(endpoint, {
+            method: 'DELETE'
+        })
+        .then((response) => response.json())
+        .then((data) => window.location.href = data.redirect)
+        .catch(err => console.log(err));
+    })
+</script>
+
+
+<%- include('./templates/footer.ejs') %>

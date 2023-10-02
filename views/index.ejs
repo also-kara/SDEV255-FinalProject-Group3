@@ -7,13 +7,28 @@
         <div class="card" style="width: 100rem;">
 
             <div class="card-body">
-                <h5 class="card-title card-header">Courses</h5>
+                <h5 class="card-title card-header">Available Courses</h5>
 
 
 <!-- No Courses Message -->
 <div class="form-outline mb-4 p-4">
-    <h4>There are no courses scheduled right now.</h4>
-    <h6>Please come back later.</h6>
+    
+</div>
+
+    
+    <% if (courses.length > 0) { %> 
+        <% courses.forEach(course => { %>
+            <a class="single" href="/course/<%= course._id %>">
+            <h3 class="title"><%= course.course_name %></h3>
+            <p class="snippet"><%= course.subject %></p>
+            </a>
+
+    <% }) %>
+    <% } else { %> 
+        <h4>There are no courses scheduled right now.</h4>
+        <h6>Please check back later.</h6>
+    <% } %> 
+
 </div>
 
 
