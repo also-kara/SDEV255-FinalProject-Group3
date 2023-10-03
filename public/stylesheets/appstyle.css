@@ -28,3 +28,7 @@ footer {
 .card {
   margin-bottom: 120px;
 }
+
+.clickable:hover {
+    cursor: pointer;
+}

@@ -1,0 +1,79 @@
+<%- include('./templates/header.ejs') %>
+<!-- Body -->
+
+   <section class="container-md mt-5">
+        <div class="row align-items-center justify-content-center">
+            
+            <div class="card" style="width: 100rem;">
+
+                <div class="card-body">
+                    <h5 class="card-title card-header">Edit Course</h5>
+
+<br/>
+<form action="/course/update/<%= course._id %>" method="POST">
+  
+  <!-- Course name input -->
+  <div class="form-outline mb-4">
+    <input type="text" 
+    id="coursename" class="form-control" 
+    name="course_name" value="<%= course.course_name %>"/>
+    <label class="form-label" for="coursename">Course Name</label>
+  </div>
+
+  <!-- Description input -->
+  <div class="form-outline mb-4">
+    <textarea class="form-control" 
+    id="description" rows="4" 
+    name="description"><%= course.description %></textarea>
+    <label class="form-label" for="description">Course Description</label>
+  </div>
+  
+
+  <!-- 3 column grid layout with course name and number of credits -->
+  <div class="row mb-4">
+    <div class="col">
+      <div class="form-outline">
+        <input type="text" 
+        id="subject" class="form-control" 
+        name="subject" value="<%= course.subject %>" />
+        <label class="form-label" for="subject">Subject Area</label>
+      </div>
+    </div>
+  <!-- Number of Credits input -->
+    <div class="col">
+      <input type="number" 
+      id="credits" class="form-control" 
+      name="credit_hours" value="<%= course.credit_hours %>" />
+      <label class="form-label" for="credits">Number of Credits</label>
+    </div>
+  <!-- max_attendance -->
+    <div class="col">
+      <input type="number" 
+      id="credits" class="form-control" 
+      name="max_attendance" value="<%= course.max_attendance %>" />
+      <label class="form-label" for="credits">Max Attendance</label>
+    </div>
+  </div>
+
+  <!-- Submit button -->
+  <button type="submit" class="btn btn-outline-success update clickable" data-doc="<%= course._id %>">Update Course</button>
+</form>
+                  
+  </div>
+</div>
+</section>
+  
+<script>
+  const updateButton = document.querySelector('button.update');
+  updateButton.addEventListener('click', (e) => {
+      const endpoint = `/course/${updateButton.dataset.doc}`;
+  
+      fetch(endpoint, {
+          method: 'PUT'
+      })
+      .then((response) => response.json())
+      .then((data) => window.location.href = data.redirect)
+      .catch(err => console.log(err));
+  })
+</script>
+<%- include('./templates/footer.ejs') %>
