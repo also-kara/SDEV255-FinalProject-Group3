@@ -62,8 +62,6 @@ app.post('/course/add', (req, res) => {
 });
 
 // Update a Course
-
-
 app.get('/course/update/:id', (req, res) => {
     const id = req.params.id;
     course.findById(id)
@@ -79,9 +77,22 @@ app.get('/course/update/:id', (req, res) => {
         .catch(err => console.log(err));
 });
 
-app.use('/course/update', (req, res) => {
-    console.log("car")
-});
+app.post('/course/update/:id', (req, res) => {
+    const id = req.params.id
+    const Course = {
+        course_name: req.body.course_name,
+        subject: req.body.subject,
+        description: req.body.description,
+        max_attendance: req.body.max_attendance,
+        credit_hours: req.body.credit_hours,
+    }
+    course.findByIdAndUpdate(id, Course)
+    .then(result => { 
+        res.redirect('/course')
+    })
+    .catch(err => console.log(err))
+    
+  })
 
 // Delete a Course
 app.delete('/course/:id', (req, res) => {
