@@ -19,8 +19,9 @@
     <% if (courses.length > 0) { %> 
         <% courses.forEach(course => { %>
             <a class="single" href="/course/<%= course._id %>">
-            <h3 class="title"><%= course.course_name %></h3>
+            <h2 class="title"><%= course.course_name %></h2>
             <p class="snippet"><%= course.subject %></p>
+              <br/>
             </a>
 
     <% }) %>
