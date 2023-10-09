@@ -1,4 +1,4 @@
-<%- include('./templates/header.ejs') %>
+<%- include('../templates/header.ejs') %>
 
 
 <section class="container-md mt-5">
@@ -18,15 +18,24 @@
                 <h3>Instructor: <%= instructor %></h3>
               <br/>
 
+              <% if (user) {%>
 
+                <%if (user.instructor && ( false || instID == null ) ) { %>
+                  
                 <a class="delete clickable" data-doc="<%= course._id %>">Delete</a>
                 <a class="update clickable" href="/course/update/<%= course._id %>">Update</a>
+                <!-- <p><%= "wow " + instID %></p> -->
+              <% }} %>
+              
+              
+                
             </div>
         </div>
     </div>
 </section>
 
 <script>
+  try {
     const deleteButton = document.querySelector('a.delete');
     deleteButton.addEventListener('click', (e) => {
         const endpoint = `/course/${deleteButton.dataset.doc}`;
@@ -38,7 +47,9 @@
         .then((data) => window.location.href = data.redirect)
         .catch(err => console.log(err));
     })
+  } catch {}
+    
 </script>
 
 
-<%- include('./templates/footer.ejs') %>
+<%- include('../templates/footer.ejs') %>
