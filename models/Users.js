@@ -24,6 +24,10 @@ const UserSchema = new Schema({
     instructor: {
         type: Boolean,
         default: false
+    },
+    courses: {
+        type: [String],
+        default: []
     }
 
 }, {timestamps: true});

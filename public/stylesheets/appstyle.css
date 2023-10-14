@@ -64,14 +64,8 @@ footer {
     cursor: pointer;
 }
 
-.delete {
-  padding: 20px;
-  font-size: 20px;
-  font-weight: bold;
-}
-
-.update {
-    padding: 20px;
+.delete, .update, .removeCourse, .addCourse {
+  margin: 10px;
   font-size: 20px;
   font-weight: bold;
 }

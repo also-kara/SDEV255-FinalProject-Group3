@@ -91,3 +91,63 @@ module.exports.course_get = (req, res) => {
         })
     .catch(err => console.log(err))
 };
+
+
+// my courses page.
+module.exports.myCourses_get = (req, res) => {
+    Course.find().sort({createdAt: -1})
+    .then((result) => {
+        res.render('course/my-courses', {courses: result});
+    })
+    .catch((err) => console.log(err))
+}
+
+
+module.exports.myCourses_post = async (req, res) => {
+    //define what user we are working with an the course id we are adding
+    const userID = req.params.userID;
+    const courseID = req.params.courseID;
+    
+    User.findById(userID).then((user) => {
+        let userCourseList = user.courses;
+
+        if (userCourseList.includes(courseID)) {
+            console.log("that course is already included");
+        } else {
+            userCourseList.push(courseID)
+            User.findByIdAndUpdate(userID, {
+                courses: userCourseList 
+            })
+            .catch(err => console.log(err))
+        }
+        })
+    .then(result => { 
+        res.json({redirect: '/course/my-courses'})
+    })
+    .catch(err => console.log(err))
+};
+
+
+module.exports.myCourses_delete = async (req, res) => {
+    //define what user we are working with an the course id we are adding
+    const userID = req.params.userID;
+    const courseID = req.params.courseID;
+    
+    User.findById(userID).then((user) => {
+        let userCourseList = user.courses;
+
+        if (userCourseList.includes(courseID)) {
+            userCourseList.pop(courseID)
+            User.findByIdAndUpdate(userID, {
+                courses: userCourseList 
+            })
+            .catch(err => console.log(err))
+        } else {
+            console.log("that course is already included");
+        }
+    })
+    .then(result => { 
+        res.json({redirect: '/course/my-courses'})
+    })
+    .catch(err => console.log(err))
+};

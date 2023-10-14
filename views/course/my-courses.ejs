@@ -1,0 +1,41 @@
+<%- include('../templates/header.ejs') %>
+<!-- Body -->
+
+<section class="container-md mt-5">
+    <div class="row align-items-center justify-content-center">
+        
+        <div class="card" style="width: 100rem;">
+
+            <div class="card-body">
+                <h5 class="card-title card-header"><%= user.courses.length %> Courses for: <%= user.name %>  
+
+                    
+                </h5>
+
+
+<!-- No Courses Message -->
+<div class="form-outline mb-4 p-4">
+
+    <% if (user && user.courses.length > 0) { %> 
+        <% courses.forEach(course => { %>
+            <% if ( user.courses.includes(course._id) ) { %>
+                <a class="single" href="/course/<%= course._id %>">
+                <h2 class="title"><%= course.course_name %></h2>
+                <p class="snippet"><%= course.subject %></p>
+                <br/>
+                </a>
+            <% } %>
+        <% }) %>
+    <% } else { %> 
+        <h4>You do not have any courses scheduled right now.</h4>
+    <% } %> 
+</div>
+
+<div class="form-outline mb-4 p-4"></div>
+    <a href="/">See All Courses</a>
+</div>
+</div>
+</section>
+
+<!-- Body -->
+<%- include('../templates/footer.ejs') %>

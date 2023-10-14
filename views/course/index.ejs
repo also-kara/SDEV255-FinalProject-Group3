@@ -12,10 +12,7 @@
 
 <!-- No Courses Message -->
 <div class="form-outline mb-4 p-4">
-    
-</div>
 
-    
     <% if (courses.length > 0) { %> 
         <% courses.forEach(course => { %>
             <a class="single" href="/course/<%= course._id %>">
@@ -33,6 +30,8 @@
 </div>
 
 
+<div class="form-outline mb-4 p-4"></div>
+    <a href="/course/my-courses">See My Courses</a>
 </div>
 </div>
 </section>
