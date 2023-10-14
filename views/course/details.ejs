@@ -24,9 +24,9 @@
                 <% } else { %>
                   <a class="addCourse clickable" data-doc="<%= user._id %>/<%= course._id %>">Enroll</a>
                 <% } %>
-                
 
-                <%if (user.instructor && instID == null ) { %>
+                <%if (user.instructor && String(user._id) == String(course.instructor_id) ) { %>
+                  
                   <a class="delete clickable" data-doc="<%= course._id %>">Delete</a>
                   <a class="update clickable" href="/course/update/<%= course._id %>">Update</a>
                   <!-- <p><%= "wow " + instID %></p> -->

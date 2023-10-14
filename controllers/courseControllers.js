@@ -1,5 +1,33 @@
+const { includes } = require('lodash');
 const Course = require('../models/Courses');
 const User = require('../models/Users');
+
+
+const clearIDfromAllCourseLists = (id) => {
+    const removeItem = (arr, item) => {
+        let newArray = [...arr]
+        const index = newArray.findIndex((element) => element == item)
+        if(index != -1) {
+            newArray.splice(index, 1) 
+        }
+        return newArray
+    
+    }
+
+    User.find()
+    .then(async (result) => {
+        for (let user of result) {
+
+            console.log(user.courses)
+            let newArray = removeItem(user.courses, id)
+            console.log(newArray)
+            console.log(user._id)
+            await User.findByIdAndUpdate(user._id, { courses: newArray } )
+        }
+    })
+    .catch((err) => console.log(err))
+
+}
 
 
 // index page
@@ -33,7 +61,7 @@ module.exports.course_update_get = (req, res) => {
             //get the instructor name
             let instID = courseResult.instructor_id;
             if (instID != null) {
-                user.findById(instID)
+                User.findById(instID)
                     .then((instructorResult) =>{ instructor = instructorResult.name; }) 
             } else {instructor = "Unknown"}
             res.render('course/edit', {course: courseResult, instructor});
@@ -64,6 +92,9 @@ module.exports.course_delete = (req, res) => {
     
     Course.findByIdAndDelete(id)
         .then(result => { 
+            //remove items from users course lists
+            clearIDfromAllCourseLists(id)
+            //redirect to homepage
             res.json({redirect: '/'})
         })
         .catch(err => console.log(err))
