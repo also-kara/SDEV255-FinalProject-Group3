@@ -8,23 +8,28 @@
 
             <div class="card-body">
                 <h2 class="card-title card-header"><%= course.course_name %></h2>
-              <br/>
+              <br>
                 <h3>Subject: <%= course.subject %></h3>
-              <br/>
+              <br>
                 <h3>Description: <%= course.description %></h3>
-              <br/>
+              <br>
                 <h3>Credit Hours: <%= course.credit_hours %></h3>
-              <br/>
+              <br>
                 <h3>Instructor: <%= instructor %></h3>
-              <br/>
+              <br>
 
-              <% if (user) {%>
+              <% if (user) { %>
+                <% if (user.courses.includes(course._id)) {%>
+                  <a class="removeCourse clickable" data-doc="<%= user._id %>/<%= course._id %>">Drop</a>
+                <% } else { %>
+                  <a class="addCourse clickable" data-doc="<%= user._id %>/<%= course._id %>">Enroll</a>
+                <% } %>
+                
 
-                <%if (user.instructor && ( false || instID == null ) ) { %>
-                  
-                <a class="delete clickable" data-doc="<%= course._id %>">Delete</a>
-                <a class="update clickable" href="/course/update/<%= course._id %>">Update</a>
-                <!-- <p><%= "wow " + instID %></p> -->
+                <%if (user.instructor && instID == null ) { %>
+                  <a class="delete clickable" data-doc="<%= course._id %>">Delete</a>
+                  <a class="update clickable" href="/course/update/<%= course._id %>">Update</a>
+                  <!-- <p><%= "wow " + instID %></p> -->
               <% }} %>
               
               
@@ -36,6 +41,8 @@
 
 <script>
   try {
+
+    // delete Course Button
     const deleteButton = document.querySelector('a.delete');
     deleteButton.addEventListener('click', (e) => {
         const endpoint = `/course/${deleteButton.dataset.doc}`;
@@ -47,7 +54,42 @@
         .then((data) => window.location.href = data.redirect)
         .catch(err => console.log(err));
     })
-  } catch {}
+
+  } catch {console.log("bad1")}
+
+  try { 
+
+// add Course Button
+const addCourseButton = document.querySelector('a.addCourse');
+addCourseButton.addEventListener('click', (e) => {
+    const endpoint = `/course/my-courses/${addCourseButton.dataset.doc}`;
+    console.log(endpoint)
+    fetch(endpoint, {
+        method: 'POST'
+    })
+    .then((response) => response.json())
+    .then((data) => window.location.href = data.redirect)
+    .catch(err => console.log(err));
+})
+} catch {console.log("bad2")}
+
+try {
+
+// remove Course Button
+const removeCourseButton = document.querySelector('a.removeCourse');
+removeCourseButton.addEventListener('click', (e) => {
+    const endpoint = `/course/my-courses/${removeCourseButton.dataset.doc}`;
+
+    fetch(endpoint, {
+        method: 'DELETE'
+    })
+    .then((response) => response.json())
+    .then((data) => window.location.href = data.redirect)
+    .catch(err => console.log(err));
+})
+
+
+} catch {console.log("bad3")}
     
 </script>
 
